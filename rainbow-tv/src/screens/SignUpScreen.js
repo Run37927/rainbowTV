@@ -3,6 +3,14 @@ import './SignUpScreen.css'
 
 
 function SignUpScreen() {
+  const register = (e) => {
+    e.preventDefault();
+  }
+
+  const signIn = (e) => {
+    e.preventDefault();
+  }
+
   return (
     <div className='signUpScreen'>
       <form>
@@ -17,9 +25,12 @@ function SignUpScreen() {
           type="password"
         />
 
-        <button type='submit'>Sign In</button>
+        <button type='submit' onClick={signIn}>Sign In</button>
 
-        <h4>New to RainbowTV? Sign Up Now.</h4>
+        <h4>
+          <span className='signUpScreen__gray'>New to RainbowTV? </span>
+          <span className='signUpScreen__link' onClick={register}>Sign Up Now.</span>
+        </h4>
       </form>
     </div>
   )

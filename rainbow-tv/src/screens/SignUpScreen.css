@@ -31,9 +31,17 @@
     border-radius: 5px;
     color: #337def;
     background-color: #f6e8c8;
+    cursor: pointer;
 }
 .signUpScreen >form>h4{
     color: #337def;
     text-align: left;
     margin-top: 20px;
+}
+.signUpScreen__gray{
+    color: #6c81a1;
+}
+.signUpScreen__link:hover{
+    cursor: pointer;
+    text-decoration: underline;
 }
