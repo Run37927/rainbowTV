@@ -1,7 +1,8 @@
 import React from 'react';
 import './App.css';
 import HomeScreen from './screens/HomeScreen'
-import LoginScreen from './screens/LoginScreen';
+import LoginScreen from './screens/LoginScreen'
+import ProfileScreen from './screens/ProfileScreen';
 import {
   BrowserRouter as Router,
   Switch,
@@ -26,12 +27,12 @@ function App() {
         }))
       } else {
         // LOGGED OUT
-        dispatch(logout)
+        dispatch(logout())
       }
     })
 
     return unsubscribe;
-  }, [])
+  }, [dispatch])
 
   return (
     <div className="app">
@@ -40,6 +41,10 @@ function App() {
           <LoginScreen />
         ) : (
           <Switch>
+            <Route path="/profile">
+              <ProfileScreen />
+            </Route>
+
             <Route path="/">
               <HomeScreen />
             </Route>
