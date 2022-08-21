@@ -7,9 +7,31 @@ import {
   Switch,
   Route
 } from "react-router-dom";
+import { auth } from "./firebase"
+import { useDispatch, useSelector } from "react-redux"
+import { login, logout, selectUser } from "./features/userSlice"
+
 
 function App() {
-  const user = null;
+  const user = useSelector(selectUser);
+  const dispatch = useDispatch();
+
+  React.useEffect(() => {
+    const unsubscribe = auth.onAuthStateChanged(userAuth => {
+      if (userAuth) {
+        // LOGGED IN
+        dispatch(login({
+          uid: userAuth.uid,
+          email: userAuth.email,
+        }))
+      } else {
+        // LOGGED OUT
+        dispatch(logout)
+      }
+    })
+
+    return unsubscribe;
+  }, [])
 
   return (
     <div className="app">
@@ -17,11 +39,11 @@ function App() {
         {!user ? (
           <LoginScreen />
         ) : (
-        <Switch>
-          <Route path="/">
-            <HomeScreen />
-          </Route>
-        </Switch>
+          <Switch>
+            <Route path="/">
+              <HomeScreen />
+            </Route>
+          </Switch>
         )}
       </Router>
     </div>
